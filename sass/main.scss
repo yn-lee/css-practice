@@ -1,0 +1,45 @@
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+@import "base/base";
+@import "base/animation";
+@import "base/typography";
+@import "base/utilities";
+
+@import "components/buttons";
+@import "components/composition";
+@import "components/feature-box";
+@import "components/card";
+@import "components/story";
+@import "components/bg-video";
+@import "components/form";
+@import "components/footer";
+@import "components/popup";
+
+@import "layout/header";
+@import "layout/navigation";
+@import "layout/grid";
+
+@import "pages/home";
+
+/* 
+      가상 클래스(:pseudo-class)
+     :link : 방문하지 않은 링크를 선택 
+     :visited : 방문한 링크를 선택 
+  */
+
+/* 
+      가상 요소(:pseudo-element)
+      가상 클래스가 실제로 존재하는 요소에 클래스 추가 없이 디자인을 입히기 위한 것이라면, 가상 요소는 아예 실제로 존재하지 않는 요소를 만들게 해줌.
+  
+      ::first-line : 해당 가상 요소는 텍스트의 첫번째 줄에만 특정 스타일을 입혀준다.
+  
+      ::first-letter : 이 요소는 텍스트의 첫 문자에 특정 스타일을 입혀준다. 미디엄 글 맨 상단에 있는 이런 스타일을 입힐 때 좋음.
+  
+      ::before의사 요소는 요소의 내용 이전에 일부 내용을 삽입
+  
+      ::after가상 요소는 요소의 내용 후 일부 콘텐츠를 삽입하는데 사용
+  
+      ::marker가상 요소는리스트 항목의 마커를 선택한다.
+  */

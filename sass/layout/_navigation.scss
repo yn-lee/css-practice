@@ -1,0 +1,142 @@
+.navigation {
+    &__checkbox {
+        display: none; //label로 버튼 대체하기 때문에 none
+    }
+
+    &__button {
+        background-color: $color-white;
+        height: 7rem;
+        width: 7rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        z-index: 2000;
+        box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
+        text-align: center; // '=' center 에 놓기위해 추가
+        cursor: pointer;
+    }
+
+    &__background {
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 6.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient($color-primary-dark, $color-primary-light);
+        z-index: 1000;
+        transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+    &__nav {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1500;
+
+        opacity: 0;
+        width: 0;
+        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.51);
+    }
+
+    &__list {
+        @include absCenter;
+        list-style: none;
+        text-align: center;
+        width: 100%;
+    }
+    &__item {
+        margin: 1rem;
+    }
+    &__link {
+        &:link,
+        &:visited {
+            color: $color-white;
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 300;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+            background-size: 230%;
+            transition: all 0.6s;
+            span {
+                display: inline-block;
+                margin-right: 1rem;
+            }
+        }
+
+        &:hover,
+        &:active {
+            background-position: 100%;
+            color: $color-primary;
+            transform: translateX(1rem);
+        }
+    }
+
+    // Nav Func
+    // Nav icon click -> nav 화면 출력
+    &__checkbox:checked ~ &__background {
+        transform: scale(75);
+    }
+
+    &__checkbox:checked ~ &__nav {
+        opacity: 1;
+        width: 100%;
+    }
+
+    //Icon
+    &__icon {
+        position: relative;
+        margin-top: 3.5rem;
+        &,
+        &::before,
+        &::after {
+            width: 3rem;
+            height: 2px;
+            background-color: $color-grey-dark-3;
+            display: inline-block;
+        }
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0; //navigation__icon 기준
+            transition: all 0.3s;
+        }
+        &::before {
+            top: -0.8rem;
+        }
+        &::after {
+            top: 0.8rem;
+        }
+    }
+
+    //Icon hover Func
+    &__button:hover &__icon::before {
+        top: 0.8rem;
+    }
+    &__button:hover &__icon::after {
+        top: -0.8rem;
+    }
+
+    //Icon click Func
+    &__checkbox:checked + &__button &__icon {
+        background-color: transparent;
+    }
+
+    &__checkbox:checked + &__button &__icon:before {
+        top: 0;
+        transform: rotate(135deg);
+    }
+
+    &__checkbox:checked + &__button &__icon:after {
+        top: 0;
+        transform: rotate(-135deg);
+    }
+}
+
+//transform-origin : 변형일어나는 기준이되는 점! (test)

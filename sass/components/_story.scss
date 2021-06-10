@@ -1,0 +1,59 @@
+.story {
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+    background-color: rgba($color-white, 0.6);
+    border-radius: $default-border-radius;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $default-font-size;
+    transform: skewX(-15deg);
+
+    &__shape {
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        -webkit-shape-outside: circle(50%); // 인접 인라인 콘텐츠를 형태에 따라 감싸는 처리
+        shape-outside: circle(50%);
+        // 요소와 높이절반 , (높이와 너비가 잇어야 작동함)
+        -webkit-clip-path: circle(50%);
+        clip-path: circle(50%);
+
+        transform: translateX(-3rem) skewX(15deg);
+        position: relative;
+        overflow: hidden; // img 원 밖으로 작게 선이 생겨서 추가로 해결
+    }
+
+    &__img {
+        height: 100%;
+        transform: translateX(-4rem) scale(1.2); // 사람 가운데오게끔
+        transition: all 0.5s;
+    }
+
+    &__text {
+        transform: skewX(15deg);
+    }
+
+    &__caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: $color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: ceter;
+        opacity: 0;
+        transition: all 0.4s;
+    }
+
+    &:hover &__caption {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover &__img {
+        transform: translateX(-4rem) scale(1);
+        filter: blur(3px) brightness(80%); //흐림 효과나 색상 변형 등 그래픽 효과를 요소에 적용
+    }
+}

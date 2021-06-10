@@ -1,0 +1,160 @@
+.card {
+    //Func
+    -moz-perspective: 150rem;
+    perspective: 150rem;
+
+    position: relative;
+    height: 52rem;
+
+    // absolute 하니 height 값이 적용되지 않아 다른 element 가 영향을 받아서 부모요소에 같은 높이를 추가해줍니당.
+
+    &__side {
+        height: 52rem;
+        transition: all 0.5s ease-in-out;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        backface-visibility: hidden;
+        border-radius: $default-border-radius;
+
+        overflow: hidden;
+        //picture img가 card 영역을 넘어가서 radius 3px이 적용안되어서 넣어줌.
+
+        box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+
+        &--front {
+            background-color: $color-white;
+        }
+
+        &--back {
+            transform: rotateY(180deg);
+            &-1 {
+                background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+            }
+
+            &-2 {
+                background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+            }
+
+            &-3 {
+                background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+            }
+        }
+    }
+
+    &:hover &__side--front {
+        transform: rotateY(-180deg);
+    }
+    &:hover &__side--back {
+        transform: rotateY(0);
+    }
+
+    //Front Card styling
+    //블렌드모드속성
+
+    &__picture {
+        background-size: cover;
+        height: 23rem;
+        background-blend-mode: screen;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); // 모든브라우저에서 작동!
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+        // border-top-left-radius: 3px;
+        // border-top-right-radius: 3px;
+        // Chrome 에서 부모에 overflow :hidden 이 있으나 clip-path 하는 경우 안먹히는 경우가 있어서 수기로 넣어줘야할 때가 있음. (잘 나와서 일단 주석처리)
+
+        &--1 {
+            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
+        }
+
+        &--2 {
+            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-6.jpg);
+        }
+
+        &--3 {
+            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-7.jpg);
+        }
+    }
+
+    &__heading {
+        font-size: 2.8rem;
+        font-weight: 300;
+        color: $color-white;
+        text-transform: uppercase;
+        text-align: right;
+        position: absolute;
+        top: 12rem;
+        right: 2rem;
+        width: 70%;
+    }
+
+    //BEM요소
+    &__heading-span {
+        padding: 1rem 1.5rem;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+        //span 한요소를 두개의 요소처럼 보이게하기위해서! -> 위아래 양옆 padding 안맞아서 사용
+
+        &--1 {
+            background-image: linear-gradient(to right bottom, rgba($color-secondary-light, 0.85), rgba($color-secondary-dark, 0.85));
+        }
+
+        &--2 {
+            background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.85), rgba($color-primary-dark, 0.85));
+        }
+
+        &--3 {
+            background-image: linear-gradient(to right bottom, rgba($color-tertiary-light, 0.85), rgba($color-tertiary-dark, 0.85));
+        }
+    }
+
+    &__details {
+        padding: 3rem;
+
+        ul {
+            list-style: none;
+            width: 80%;
+            margin: 0 auto;
+            li {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem;
+                &:not(:last-child) {
+                    border-bottom: 1px solid #eee;
+                }
+            }
+        }
+    }
+
+    //Back card styling
+    &__cta {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    &__price-box {
+        text-align: center;
+        color: $color-white;
+        margin-bottom: 8rem;
+    }
+
+    &__price-only {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+    }
+    &__price-value {
+        font-size: 6rem;
+        font-weight: 100;
+    }
+}
+
+//perspective :3D 공간에서 요소와 관측 점과의 거리, 즉 원근감을 지정하는 속성,속성 값이 작을수록 가깝게 보이고, 클수록 멀게 보임
+
+// background-blend-mode: 배경을 혼합했을 때의 상태를 정의
+//IE,엣지 작동 X ,safari, firefox 및 chrome 에서만 작덩

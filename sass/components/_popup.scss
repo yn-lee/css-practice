@@ -1,0 +1,96 @@
+.popup {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black, 0.8);
+    z-index: 2500;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+
+    &__content {
+        display: table;
+        @include absCenter;
+
+        width: 75%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+        border-radius: $default-font-size;
+        overflow: hidden; //img 가 넘어감.
+
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2);
+        transition: all 0.4s 0.1s;
+    }
+
+    //popup 단 두개를 float:left 로 지정시 크기 차이가 남
+    //-> 그래서 table-cell 로 높이를 맞춰줬습니당.
+
+    &__left {
+        width: 33.3%;
+        display: table-cell;
+    }
+
+    &__right {
+        width: 66.7%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+    }
+
+    &__text {
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+
+        -moz-column-count: 2;
+        -moz-column-gap: 4rem; //기본간격 1em = 14px;
+        -moz-column-rule: 1px solid $color-grey-light-1;
+
+        column-count: 2;
+        column-gap: 4rem; //기본간격 1em = 14px;
+        column-rule: 1px solid $color-grey-light-1;
+
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+
+    //Open Popup
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    //Close Popup
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-grey-dark;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}
